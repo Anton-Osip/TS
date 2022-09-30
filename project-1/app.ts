@@ -1,6 +1,4 @@
-const skills: [number, string] = [1, 'Dev']
+const skill: readonly [number, string] = [1, 'Dev']
 
-const id = skills[0]
-const skillName = skills[1]
-
-const arr: [string, number, ...boolean[]] = ['sdf', 5, true, true]
+const skills: readonly string[] = ['1', 'Dev']
+const skills1: ReadonlyArray<string> = ['1', 'Dev']
