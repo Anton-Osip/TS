@@ -1,19 +1,44 @@
 "use strict";
-var statusCode;
-(function (statusCode) {
-    statusCode[statusCode["SUCCESS"] = 1] = "SUCCESS";
-    statusCode[statusCode["IN_PROCESS"] = 10] = "IN_PROCESS";
-    statusCode[statusCode["FAILD"] = 100] = "FAILD";
-})(statusCode || (statusCode = {}));
-// enum statusCode {
-// 	SUCCESS,
-// 	IN_PROCESS,
-// 	FAILD,
+// /* Запрос */
+// {
+// 	"topicId": 5,
+// 	"status": "published" // "draft", "deleted"
 // }
-const res = {
-    message: 'blablabla',
-    statusCode: statusCode.SUCCESS,
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
-//1 - успех
-//2 - в процессе
-//3 - отклонен
+// /* Ответ */
+// [
+// 	{
+// 		"question": "Как осуществляется доставка?",
+// 		"answer": "быстро!",
+// 		"tags": [
+// 			"popular",
+// 			"new"
+// 		],
+// 		"likes": 3,
+// 		"status": "published"
+// 	}
+// ]
+var QuestionsStatus;
+(function (QuestionsStatus) {
+    QuestionsStatus["Published"] = "published";
+    QuestionsStatus["Draft"] = "draft";
+    QuestionsStatus["Deleted"] = "deleted";
+})(QuestionsStatus || (QuestionsStatus = {}));
+function getFaqs(req) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield fetch('/faqs', {
+            method: 'POST',
+            body: JSON.stringify(req),
+        });
+        const data = yield res.json();
+        return data;
+    });
+}
