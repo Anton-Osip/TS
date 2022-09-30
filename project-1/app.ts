@@ -1,4 +1,19 @@
-const skill: readonly [number, string] = [1, 'Dev']
+enum statusCode {
+	SUCCESS=1,
+	IN_PROCESS=10,
+	FAILD=100,
+}
 
-const skills: readonly string[] = ['1', 'Dev']
-const skills1: ReadonlyArray<string> = ['1', 'Dev']
+// enum statusCode {
+// 	SUCCESS,
+// 	IN_PROCESS,
+// 	FAILD,
+// }
+const res = {
+	message: 'blablabla',
+	statusCode: statusCode.SUCCESS,
+}
+
+//1 - успех
+//2 - в процессе
+//3 - отклонен
