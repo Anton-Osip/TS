@@ -7,5 +7,9 @@ const user = {
     surName: 'Osipchyk',
     sity: 'Minsk',
     age: 25,
+    skills: {
+        dev: true,
+        devops: true,
+    },
 };
 console.log(getFullName(user));
