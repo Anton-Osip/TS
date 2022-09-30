@@ -1,7 +1,9 @@
-let revenue: number = 1000
-let bonus: number = 500
-let c: string = 'fgh'
-let bool: boolean = true
+function getFullName(firstName: string, surName: string): string {
+	return `${firstName} ${surName}`
+}
 
-let res: number = revenue + bonus
-console.log(res)
+const getFullName2 = (firstName: string, surName: string): string => {
+	return `${firstName} ${surName}`
+}
+
+console.log(getFullName('Anton', 'Osipchyk'))
