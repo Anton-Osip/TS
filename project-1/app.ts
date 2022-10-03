@@ -1,32 +1,55 @@
-interface User {
-	login: string
-	password?: string
+// Запрос в виде платежа
+// {
+// 	"sum": 10000,
+// 	"from": 2,
+// 	"to": 4
+// }
+// Ответ
+// {
+// 	"status": "success",
+// 	"data": {
+// 		"databaseId": 567,
+// 		"sum": 10000,
+// 		"from": 2,
+// 		"to": 4
+// 	}
+// },
+// {
+// 	"status": "failed",
+// 	"data": {
+// 		"errorMessage": "Недостаточно средств",
+// 		"errorCode": 4
+// 	}
+// }
+
+interface IPayment {
+	sum: number
+	from: number
+	to: number
 }
 
-const user: User = {
-	login: 'a@mail.com',
-	// password: 'gfhj', Опциональный пароль  Может быть а может и не быть
+enum PaymentStatus {
+	Success = 'success',
+	Failed = 'failed',
 }
 
-function multiply(a: number, b?: number): number {
-	if (!b) {
-		return a * a
-	}
-	return a * b
+interface IPaymentRequest extends IPayment {}
+
+interface IDataSuccess extends IPaymentRequest {
+	databaseId: number
 }
 
-interface UserPro {
-	login: string
-	password?: {
-		type: 'primary' | 'secondary'
-	}
+interface IDataFailed {
+	errorMessage: string
+	errorCode: number
 }
 
-function testPass(user: UserPro) {
-	const t = user.password?.type // может быть андефаин
-	const f = user.password!.type // точно пароль будет
+interface IResponseSuccess {
+	status: PaymentStatus.Success
+	data: IDataSuccess
 }
 
-function test(param?: string) {
-	const t = param ?? multiply(5)
+interface IResponseFaild {
+	status: PaymentStatus.Failed
+	data: IDataFailed
 }
