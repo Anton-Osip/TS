@@ -1,43 +1,41 @@
-// /* Запрос */
-// {
-// 	"topicId": 5,
-// 	"status": "published" // "draft", "deleted"
-// }
-
-// /* Ответ */
-// [
-// 	{
-// 		"question": "Как осуществляется доставка?",
-// 		"answer": "быстро!",
-// 		"tags": [
-// 			"popular",
-// 			"new"
-// 		],
-// 		"likes": 3,
-// 		"status": "published"
-// 	}
-// ]
-
-enum QuestionsStatus {
-	Published = 'published',
-	Draft = 'draft',
-	Deleted = 'deleted',
+function logId(id: string | number | boolean) {
+	console.log(id)
 }
 
-async function getFaqs(req: {
-    topicId: number;
-    status?: QuestionsStatus 
-    }): Promise<{
-	question: string
-	answer: string
-	tags: string[]
-	likes: number
-	status?: QuestionsStatus
-}> {
-	const res = await fetch('/faqs', {
-		method: 'POST',
-		body: JSON.stringify(req),
-	})
-	const data = await res.json()
-	return data
+logId(1)
+logId('ghjk')
+logId(true)
+
+function logId1(id: string | number | boolean) {
+	if (typeof id === 'string') {
+		console.log(id.toUpperCase())
+	} else if (typeof id === 'number') {
+		console.log(id)
+	} else {
+		console.log(id)
+	}
+}
+
+function logError(err: string | string[]) {
+	if (Array.isArray(err)) {
+		console.log(err)
+	} else {
+		console.log(err)
+	}
+}
+
+function logObj(obj: { a: number } | { b: number }) {
+	if ('a' in obj) {
+		console.log(obj.a)
+	} else {
+		console.log(obj.b)
+	}
+}
+
+function lgMultiplaeIds(a: string | number, b: string | boolean) {
+	if (a === b) {
+		console.log(a)
+	} else {
+		console.log(a)
+	}
 }
