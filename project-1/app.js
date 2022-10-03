@@ -1,9 +1,20 @@
 "use strict";
-// enum ReqestType {
-// 	GET = 'get',
-// 	POST = 'post',
-// }
 function fetchWithAuth(url, method) { }
 fetchWithAuth('fgh', 'get');
-let method = 'post';
-fetchWithAuth('fgh', method);
+// ---------------------------
+let user = {
+    name: 'asd',
+    age: 33,
+    skills: ['1', '2'],
+};
+let user1 = {
+    name: 'asd',
+    age: 33,
+    skills: ['1', '2'],
+};
+let user2 = {
+    name: 'asd',
+    age: 33,
+    skills: ['1', '2'],
+    id: 5,
+};
