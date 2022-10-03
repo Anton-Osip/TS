@@ -1,48 +1,49 @@
-type httpMethod = 'post' | 'get'
-
-type coolString = string
-
-function fetchWithAuth(url: coolString, method: httpMethod) {}
-
-fetchWithAuth('fgh', 'get')
-// ---------------------------
-let user: {
+interface User {
 	name: string
 	age: number
 	skills: string[]
-} = {
-	name: 'asd',
-	age: 33,
-	skills: ['1', '2'],
+
+	log: (id: number) => string
 }
 
-// ----------------------
-type User = {
+interface Role {
+	roleId: number
+}
+
+interface UserWithRole extends User, Role {
+	createdAt: Date
+}
+
+// interface UserWithRole extends User {
+// 	roleId: number
+// }
+
+type User2 = {
 	name: string
 	age: number
 	skills: string[]
+
+	log: (id: number) => string
 }
 
-let user1: User = {
+let user: UserWithRole = {
 	name: 'asd',
 	age: 33,
 	skills: ['1', '2'],
+	roleId: 5,
+	createdAt: new Date(),
+
+	log(id) {
+		return 'ghjk'
+	},
 }
 
-// -------------------------
+// -----------------
 
-type User1 = {
-	name: string
-	age: number
-	skills: string[]
+interface UserDic {
+	[index: number]: User
 }
-type Role = { id: number }
 
-type UserWithRole = User1 & Role // Объеденения
-
-let user2: UserWithRole = {
-	name: 'asd',
-	age: 33,
-	skills: ['1', '2'],
-	id: 5,
+type UserDic2 = {
+	[index: number]: User
 }
