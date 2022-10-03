@@ -1,55 +1,32 @@
-// Запрос в виде платежа
-// {
-// 	"sum": 10000,
-// 	"from": 2,
-// 	"to": 4
-// }
-// Ответ
-// {
-// 	"status": "success",
-// 	"data": {
-// 		"databaseId": 567,
-// 		"sum": 10000,
-// 		"from": 2,
-// 		"to": 4
-// 	}
-// },
-// {
-// 	"status": "failed",
-// 	"data": {
-// 		"errorMessage": "Недостаточно средств",
-// 		"errorCode": 4
-// 	}
-// }
-
-interface IPayment {
-	sum: number
-	from: number
-	to: number
+function logId(id: string | number): void {
+	//функция ничего не возвращает void
+	console.log(id)
 }
 
-enum PaymentStatus {
-	Success = 'success',
-	Failed = 'failed',
+const a = logId(1) //a:void
+
+function multiply(f: number, s?: number) {
+	if (!s) {
+		return f * f
+	}
 }
 
-interface IPaymentRequest extends IPayment {}
+type voidFunc = () => void
 
-interface IDataSuccess extends IPaymentRequest {
-	databaseId: number
+const f1: voidFunc = () => {}
+
+const f2: voidFunc = () => {
+	return true
 }
 
-interface IDataFailed {
-	errorMessage: string
-	errorCode: number
+const b = f2()
+
+console.log(b)
+
+const skills = ['dev', 'DecOps']
+
+const user = {
+	s: ['s'],
 }
 
-interface IResponseSuccess {
-	status: PaymentStatus.Success
-	data: IDataSuccess
-}
-
-interface IResponseFaild {
-	status: PaymentStatus.Failed
-	data: IDataFailed
-}
+skills.forEach(skill => user.s.push(skill))
