@@ -1,32 +1,40 @@
-function logId(id: string | number): void {
-	//функция ничего не возвращает void
-	console.log(id)
-}
+//unknow Мы не знаем что лежит в переменной
 
-const a = logId(1) //a:void
+let input: unknown
 
-function multiply(f: number, s?: number) {
-	if (!s) {
-		return f * f
+input = 3
+input = ['sd', 'df']
+
+// let res: string = input
+
+function run(i: unknown) {
+	if (typeof i == 'number') {
+		i++
+	} else {
 	}
 }
 
-type voidFunc = () => void
+run(input)
 
-const f1: voidFunc = () => {}
-
-const f2: voidFunc = () => {
-	return true
+//Использовать так лучше
+async function gatData() {
+	try {
+		await fetch('')
+	} catch (error) {
+		if (error instanceof Error) {
+			console.log(error.message)
+		}
+	}
 }
 
-const b = f2()
-
-console.log(b)
-
-const skills = ['dev', 'DecOps']
-
-const user = {
-	s: ['s'],
+async function gatDataForce() {
+	try {
+		await fetch('')
+	} catch (error) {
+		const e = error as Error
+		console.log(e.message)
+	}
 }
 
-skills.forEach(skill => user.s.push(skill))
+type U1 = unknown | null //unknown
+type U2 = unknown & string //string
