@@ -1,41 +1,12 @@
-function logId(id: string | number | boolean) {
-	console.log(id)
-}
+// enum ReqestType {
+// 	GET = 'get',
+// 	POST = 'post',
+// }
 
-logId(1)
-logId('ghjk')
-logId(true)
+function fetchWithAuth(url: string, method: 'post' | 'get') {}
 
-function logId1(id: string | number | boolean) {
-	if (typeof id === 'string') {
-		console.log(id.toUpperCase())
-	} else if (typeof id === 'number') {
-		console.log(id)
-	} else {
-		console.log(id)
-	}
-}
+fetchWithAuth('fgh', 'get')
 
-function logError(err: string | string[]) {
-	if (Array.isArray(err)) {
-		console.log(err)
-	} else {
-		console.log(err)
-	}
-}
+let method = 'post'
 
-function logObj(obj: { a: number } | { b: number }) {
-	if ('a' in obj) {
-		console.log(obj.a)
-	} else {
-		console.log(obj.b)
-	}
-}
-
-function lgMultiplaeIds(a: string | number, b: string | boolean) {
-	if (a === b) {
-		console.log(a)
-	} else {
-		console.log(a)
-	}
-}
+fetchWithAuth('fgh', method as 'post')
