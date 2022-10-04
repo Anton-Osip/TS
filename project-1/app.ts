@@ -1,46 +1,27 @@
-//never никогда такого не произойдет
+//Null
 
-function generateError(message: string): never {
-	throw new Error(message)
+const n: null = null
+// const n1: null = undefined
+
+// "strictNullChecks": false
+
+const n2: any = null
+// const n3: number = null
+// const n4: string = null
+// const n5: boolean = null
+// const n6: undefined = null
+
+interface User {
+name: string
 }
 
-function dumpError(): never {
-	//никогда не вернеться функция
-	while (true) {}
-}
-
-function rec(): never {
-	//никогда не вернеться функция
-	rec()
-}
-
-const a: void = undefined
-//const b: never = undefined //ошибка
-
-type paymentAction = 'refund' | 'checkout' | 'reject'
-
-function processAction(action: paymentAction) {
-	switch (action) {
-		case 'refund':
-			//...
-			break
-		case 'checkout':
-			//...
-			break
-		case 'reject':
-			//...
-			break
-		default: //проверка что мы сюда не попадем с другим типам
-			const s: never = action
-			throw new Error('Нет такого action')
+function getUser(): User {
+	if (Math.random() > 0.5) {
+		return null
+	} else {
+		return { name: 'vasya' } as User
 	}
 }
 
-function isString(x: string | number): boolean {
-	if (typeof x === 'string') {
-		return true
-	} else if (typeof x === 'number') {
-		return false
-	}
-	generateError('gfhj')
-}
+const user = getUser()
+const n55 = user.name
