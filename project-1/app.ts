@@ -1,40 +1,46 @@
-//unknow Мы не знаем что лежит в переменной
+//never никогда такого не произойдет
 
-let input: unknown
+function generateError(message: string): never {
+	throw new Error(message)
+}
 
-input = 3
-input = ['sd', 'df']
+function dumpError(): never {
+	//никогда не вернеться функция
+	while (true) {}
+}
 
-// let res: string = input
+function rec(): never {
+	//никогда не вернеться функция
+	rec()
+}
 
-function run(i: unknown) {
-	if (typeof i == 'number') {
-		i++
-	} else {
+const a: void = undefined
+//const b: never = undefined //ошибка
+
+type paymentAction = 'refund' | 'checkout' | 'reject'
+
+function processAction(action: paymentAction) {
+	switch (action) {
+		case 'refund':
+			//...
+			break
+		case 'checkout':
+			//...
+			break
+		case 'reject':
+			//...
+			break
+		default: //проверка что мы сюда не попадем с другим типам
+			const s: never = action
+			throw new Error('Нет такого action')
 	}
 }
 
-run(input)
-
-//Использовать так лучше
-async function gatData() {
-	try {
-		await fetch('')
-	} catch (error) {
-		if (error instanceof Error) {
-			console.log(error.message)
-		}
+function isString(x: string | number): boolean {
+	if (typeof x === 'string') {
+		return true
+	} else if (typeof x === 'number') {
+		return false
 	}
+	generateError('gfhj')
 }
-
-async function gatDataForce() {
-	try {
-		await fetch('')
-	} catch (error) {
-		const e = error as Error
-		console.log(e.message)
-	}
-}
-
-type U1 = unknown | null //unknown
-type U2 = unknown & string //string

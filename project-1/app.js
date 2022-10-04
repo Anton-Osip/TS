@@ -1,47 +1,39 @@
 "use strict";
-//unknow Мы не знаем что лежит в переменной
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-let input;
-input = 3;
-input = ['sd', 'df'];
-// let res: string = input
-function run(i) {
-    if (typeof i == 'number') {
-        i++;
-    }
-    else {
+//never никогда такого не произойдет
+function generateError(message) {
+    throw new Error(message);
+}
+function dumpError() {
+    //никогда не вернеться функция
+    while (true) { }
+}
+function rec() {
+    //никогда не вернеться функция
+    rec();
+}
+const a = undefined;
+function processAction(action) {
+    switch (action) {
+        case 'refund':
+            //...
+            break;
+        case 'checkout':
+            //...
+            break;
+        case 'reject':
+            //...
+            break;
+        default: //проверка что мы сюда не попадем с другим типам
+            const s = action;
+            throw new Error('Нет такого action');
     }
 }
-run(input);
-//Использовать так лучше
-function gatData() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield fetch('');
-        }
-        catch (error) {
-            if (error instanceof Error) {
-                console.log(error.message);
-            }
-        }
-    });
-}
-function gatDataForce() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield fetch('');
-        }
-        catch (error) {
-            const e = error;
-            console.log(e.message);
-        }
-    });
+function isString(x) {
+    if (typeof x === 'string') {
+        return true;
+    }
+    else if (typeof x === 'number') {
+        return false;
+    }
+    generateError('gfhj');
 }
