@@ -1,27 +1,54 @@
-//Null
+let a: number = 5
+let b: string = a.toString()
 
-const n: null = null
-// const n1: null = undefined
+let c: string = 'asdf'
+let d: number = +c
+let g: number = parseInt(c)
 
-// "strictNullChecks": false
-
-const n2: any = null
-// const n3: number = null
-// const n4: string = null
-// const n5: boolean = null
-// const n6: undefined = null
+let e: string = new String(a).valueOf()
+let Str: String = new String(a)
+let bool: boolean = new Boolean(a).valueOf()
 
 interface User {
-name: string
+	name: string
+	email: string
+	login: string
 }
 
-function getUser(): User {
-	if (Math.random() > 0.5) {
-		return null
-	} else {
-		return { name: 'vasya' } as User
+const user: User = {
+	name: 'Vasya',
+	email: 'v@mail.ru',
+	login: 'vas',
+}
+
+const user1 = {
+	name: 'Vasya',
+	email: 'v@mail.ru',
+	login: 'vas',
+} as User
+
+const user3 = <User>{
+	name: 'Vasya',
+	email: 'v@mail.ru',
+	login: 'vas',
+}
+//не рекоминдуют использовать
+
+interface Admin {
+	name: string
+	role: number
+}
+//Преобразование
+//получили из пользователя админа
+const admin: Admin = {
+	...user,
+	role: 1,
+}
+
+//ДЕЛАТ ТАК ФУНКЦИЯ MAPING
+function userToAdmin(user: User): Admin {
+	return {
+		name: user.name,
+		role: 1,
 	}
 }
-
-const user = getUser()
-const n55 = user.name
