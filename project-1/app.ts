@@ -1,44 +1,20 @@
-interface User {
+class User {
 	name: string
-	email: string
-	login: string
-}
-
-const user: User = {
-	name: 'Vasya',
-	email: 'v@mail.ru',
-	login: 'vas',
-}
-
-interface Admin {
-	name: string
-	role: number
-}
-
-function isString(x: string | number): x is string {
-	return typeof x === 'string'
-}
-
-function logId(id: string | number) {
-	if (isString(id)) {
-		console.log(id)
-	} else {
-		console.log(id)
+	constructor(name: string) {
+		this.name = name
 	}
 }
 
-function isAdmin(user: User | Admin): user is Admin {
-	return 'role' in user
+const user = new User('VASYA')
+console.log(user)
+
+user.name = 'Petya'
+
+console.log(user)
+
+class Admin {
+	role: number //"strictPropertyInitialization": false or !
 }
 
-function isAdminAlternative(user: User | Admin): user is Admin {
-	return (user as Admin).role !== undefined
-}
-
-function setRoleZero(user: User | Admin) {
-	if (isAdmin(user)) {
-		user.role = 0
-	} else {
-		throw new Error('Пользователь не админ')
-	}
-}
+const admin = new Admin()
+admin.role = 1
