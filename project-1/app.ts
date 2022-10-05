@@ -1,23 +1,18 @@
 class User {
-	skills: string[]
+	_login: string
+	_password: string
 
-	addSkill(skill: string): void
-	addSkill(skills: string[]): void
-	addSkill(skillOrSkills: string | string[]): void {
-		if (typeof skillOrSkills === 'string') {
-			this.skills.push(skillOrSkills)
-		} else {
-			this.skills.concat(skillOrSkills)
-		}
+	set login(l: string | number) {
+		this._login = 'user-' + l
+	}
+
+	get login() {
+		return this._login
 	}
 }
 
-function run(distance: number): string
-function run(distance: string): number
-function run(distance: number | string): number | string {
-	if (typeof distance === 'number') {
-		return 1
-	} else {
-		return ''
-	}
-}
+const user = new User()
+user.login = 'myLogin'
+
+console.log(user)
+console.log(user.login)
