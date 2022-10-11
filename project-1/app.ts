@@ -1,18 +1,33 @@
-class User {
-	_login: string
-	_password: string
+interface iLogger {
+	log(...args): void
+	error(...args): void
+}
 
-	set login(l: string | number) {
-		this._login = 'user-' + l
+class Logger implements iLogger {
+	log(...args: any[]): void {
+		console.log(...args)
 	}
 
-	get login() {
-		return this._login
+	async error(...args: any[]): Promise<void> {
+		//Кинуть во внешнюю систему
+		console.log(...args)
 	}
 }
 
-const user = new User()
-user.login = 'myLogin'
+interface IPayable {
+	pay(paymentId: number): void
+	price?: number
+}
 
-console.log(user)
-console.log(user.login)
+interface IDeletable {
+	delete(): void
+}
+
+class User implements IPayable, IDeletable {
+	delete(): void {
+		throw new Error("Method not implemented.")
+	}
+	pay(paymentId: number): void {
+		throw new Error('Method not implemented.')
+	}
+}
