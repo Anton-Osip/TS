@@ -1,41 +1,18 @@
 "use strict";
-// type PaymentStatus = 'new' | 'paid'
-// class Payment {
-// 	id: number
-// 	status: PaymentStatus = 'new'
-// 	constructor(id: number) {
-// 		this.id = id
-// 	}
-// 	pay() {
-// 		this.status = 'paid'
-// 	}
-// }
-// class PersistedPayment extends Payment {
-// 	databaseId: number
-// 	payedAt: Date
-// 	constructor() {
-// 		const id = Math.random()
-// 		super(id)
-// 	}
-// 	save() {}
-// 	override pay(date?: Date) {
-// 		super.pay()
-// 		if (date) {
-// 			this.payedAt = date
-// 		}
-// 	}
-// }
 class User {
-    constructor() {
-        this.name = 'user';
-        console.log(this.name);
+    constructor(name) {
+        this.name = name;
     }
 }
-class Admin extends User {
-    constructor() {
-        super();
-        this.name = 'admin';
-        console.log(this.name);
+class Users extends Array {
+    searchByName(name) {
+        return this.filter(u => u.name === name);
+    }
+    toString() {
+        return this.map(u => u.name).join(', ');
     }
 }
-new Admin();
+const users = new Users();
+users.push(new User('vasya'));
+users.push(new User('Petya'));
+console.log(users.toString());

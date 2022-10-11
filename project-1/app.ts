@@ -1,61 +1,45 @@
-type PaymentStatus = 'new' | 'paid'
-
-class Payment {
-	id: number
-	status: PaymentStatus = 'new'
-
-	constructor(id: number) {
-		this.id = id
-	}
-
-	pay() {
-		this.status = 'paid'
-	}
-}
-
-class PersistedPayment extends Payment {
-	databaseId: number
-	payedAt: Date
-
-	constructor() {
-		const id = Math.random()
-		super(id)
-	}
-
-	save() {}
-
-	override pay(date?: Date) {
-		super.pay()
-		if (date) {
-			this.payedAt = date
-		}
-	}
-}
-
 class User {
-	name: string = 'user'
-
-	constructor() {
-		console.log(this.name)
+	name: string
+	constructor(name: string) {
+		this.name = name
 	}
 }
 
-class Admin extends User {
-	name: string = 'admin'
-	constructor() {
-		super()
-		console.log(this.name)
+class Users extends Array<User> {
+	searchByName(name: string) {
+		return this.filter(u => u.name === name)
+	}
+	override toString(): string {
+		return this.map(u => u.name).join(', ')
+	}
+}
+const users = new Users()
+
+users.push(new User('vasya'))
+users.push(new User('Petya'))
+console.log(users.toString())
+
+class UserList {
+	users: User[]
+
+	push(u: User) {
+		this.users.push(u)
 	}
 }
 
-new Admin()
+class Payment{
+	date:Date
+}
 
-new Error('df')
+class UserWithPayment extends Payment{
+	name:string
+}
+class UserWithPayment2{
+	user:User
+	payment:Payment
 
-class HttpError extends Error {
-	code: number
-	constructor(message: string, code?: number) {
-		super(message)
-		this.code = code ?? 500
+	constructor(user:User,payment:Payment){
+		this.user=user
+		this.payment=payment
 	}
 }
