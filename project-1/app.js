@@ -1,13 +1,41 @@
 "use strict";
+// type PaymentStatus = 'new' | 'paid'
+// class Payment {
+// 	id: number
+// 	status: PaymentStatus = 'new'
+// 	constructor(id: number) {
+// 		this.id = id
+// 	}
+// 	pay() {
+// 		this.status = 'paid'
+// 	}
+// }
+// class PersistedPayment extends Payment {
+// 	databaseId: number
+// 	payedAt: Date
+// 	constructor() {
+// 		const id = Math.random()
+// 		super(id)
+// 	}
+// 	save() {}
+// 	override pay(date?: Date) {
+// 		super.pay()
+// 		if (date) {
+// 			this.payedAt = date
+// 		}
+// 	}
+// }
 class User {
-    set login(l) {
-        this._login = 'user-' + l;
-    }
-    get login() {
-        return 'no_login';
+    constructor() {
+        this.name = 'user';
+        console.log(this.name);
     }
 }
-const user = new User();
-user.login = 'myLogin';
-console.log(user);
-console.log(user.login);
+class Admin extends User {
+    constructor() {
+        super();
+        this.name = 'admin';
+        console.log(this.name);
+    }
+}
+new Admin();
